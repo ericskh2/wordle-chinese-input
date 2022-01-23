@@ -4,12 +4,17 @@ import { FC, useState } from "react";
 interface IPuzzleBox {
 
     character?: string;
+
+    match?: string;
 }
-const PuzzleBox: FC<IPuzzleBox> = ({character}: IPuzzleBox) => {
+
+const PuzzleBox: FC<IPuzzleBox> = ({character, match}: IPuzzleBox) => {
 
     character = character ? character : " ";
 
-    return <Box sx={{width:50, height: 50, fontSize:"2rem", border: "2px solid"}}>{character}</Box>;
+    match = match || "white";
+    
+    return <Box sx={{width:50, height: 50, fontSize:"2rem", border: "2px solid", backgroundColor: match}}>{character}</Box>;
 }
 
 export default PuzzleBox;

@@ -12,7 +12,7 @@ const Navbar: FC = () => {
         py={5}
         >   
             <Typography variant="h3">Wordle</Typography>
-            <Typography>Help</Typography>
+            <Typography>Author: ericskh2</Typography>
         </Stack>
     )
 }

@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { FC, useEffect } from "react";
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
+import GuessStore from "../../mobx/GuessStore";
 
 const InputArea: FC = () => {
 
@@ -11,8 +12,13 @@ const InputArea: FC = () => {
     },[]);
 
     const onKeyPress = (button: string) => {
-        if(button=="{enter}") console.log("ENTER!"); 
-        else console.log(button)
+        if(button=="{enter}") GuessStore.attempGuess();
+        else if(button=="{bksp}") {
+            GuessStore.popCurrentGuess();
+        }
+        else {
+            GuessStore.appendCurrentGuess(button);
+        } 
     }
 
     return (
