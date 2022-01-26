@@ -12,7 +12,7 @@ const InputArea: FC = () => {
     },[]);
 
     const onKeyPress = (button: string) => {
-        if(button=="{enter}") GuessStore.attempGuess();
+        if(button=="{enter}") GuessStore.attemptGuess();
         else if(button=="{bksp}") {
             GuessStore.popCurrentGuess();
         }

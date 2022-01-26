@@ -9,7 +9,12 @@ const rowCnt = 6;
 
 const Puzzle:FC = () => {
     
+    const [status,setStatus]  = useState("");
     const [puzzle,setPuzzle] = useState<JSX.Element[]>([...Array(rowCnt).keys()].map((i)=><PuzzleRow key={i} guess="" guessed={false}/>));
+
+    useEffect(()=>reaction(()=>GuessStore.status,()=>{
+        setStatus(GuessStore.status);    
+    }))
 
     useEffect(()=>
         reaction(()=>GuessStore.guess,()=>{
@@ -18,7 +23,8 @@ const Puzzle:FC = () => {
     ,[]);
 
     return (
-        <Box>
+        <Box sx={{textAlign:"center"}}>
+            <p>{status}</p>
             {puzzle}
         </Box>
     )

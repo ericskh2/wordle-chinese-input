@@ -2,6 +2,7 @@ import { Stack } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import Answer from "../../../utils/Answer";
 import PuzzleBox from "../PuzzleBox";
+import GuessStore from "../../../mobx/GuessStore";
 
 const boxCnt = 4;
 
@@ -16,8 +17,15 @@ const PuzzleRow: FC<IPuzzleRow> = ({guess, guessed}:IPuzzleRow) => {
         const result = Array(boxCnt).fill("white");
         if(!guessed) return result;
         const len = Answer.answer.length;
+        let greenCnt = 0;
         for(let i=0; i<len; i++) {
-            if(Answer.answer[i]==guess[i]) result[i] = "lightgreen";
+            if(Answer.answer[i]==guess[i]) {
+                result[i] = "lightgreen";
+                greenCnt++;
+            }
+        }
+        if(greenCnt==boxCnt) {
+            GuessStore.status = "Success!";
         }
         for(let i=0; i<len; i++) {
             if(Answer.answer[i]==guess[i]) continue;
